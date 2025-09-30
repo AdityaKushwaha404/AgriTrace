@@ -2,6 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import TransparencyPage from './pages/TransparencyPage';
+import SupplyChainDashboard from './pages/SupplyChainDashboard';
+import BatchManagementPage from './pages/BatchManagementPage';
+import TraceabilityExplorerPage from './pages/TraceabilityExplorerPage';
+import TransferManagementPage from './pages/TransferManagementPage';
+import MLAnalyticsPage from './pages/MLAnalyticsPage';
+import QualityPricingPage from './pages/QualityPricingPage';
+import QRCodeGeneratorPage from './pages/QRCodeGeneratorPage';
+import RoleManagementPage from './pages/RoleManagementPage';
+import ReportsInsightsPage from './pages/ReportsInsightsPage';
 import BatchMLAnalytics from './components/BatchMLAnalytics';
 import MLAnalytics from './components/MLAnalytics';
 import RoleManager from './components/RoleManager';
@@ -43,8 +52,17 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-  <Route path="/dashboard" element={<Dashboard />} />
-  <Route path="/transparency" element={<TransparencyPage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/transparency" element={<SupplyChainDashboard />} />
+        <Route path="/transparency/legacy" element={<TransparencyPage />} />
+        <Route path="/transparency/batch-management" element={<BatchManagementPage />} />
+        <Route path="/transparency/traceability" element={<TraceabilityExplorerPage />} />
+        <Route path="/transparency/transfers" element={<TransferManagementPage />} />
+        <Route path="/transparency/analytics" element={<MLAnalyticsPage />} />
+        <Route path="/transparency/quality-pricing" element={<QualityPricingPage />} />
+        <Route path="/transparency/qr-codes" element={<QRCodeGeneratorPage />} />
+        <Route path="/transparency/roles" element={<RoleManagementPage />} />
+        <Route path="/transparency/reports" element={<ReportsInsightsPage />} />
       </Routes>
     </Router>
   );

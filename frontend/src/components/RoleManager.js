@@ -80,7 +80,7 @@ function RoleManager() {
           <div className="form-actions">
             <button type="button" className="form-button" onClick={handleCheck}>Check Role</button>
             {hasRole !== null && (
-              <span className={`text-xs font-semibold ${hasRole === true ? 'text-emerald-600' : hasRole === false ? 'text-red-600' : 'text-gray-500'}`}>{hasRole === true ? 'Has Role' : hasRole === false ? 'No Role' : hasRole}</span>
+              <span className={`text-xs font-semibold ${hasRole === true ? 'text-emerald-600' : hasRole === false ? 'text-teal-600' : 'text-gray-500'}`}>{hasRole === true ? 'Has Role' : hasRole === false ? 'No Role' : hasRole}</span>
             )}
           </div>
         </div>
