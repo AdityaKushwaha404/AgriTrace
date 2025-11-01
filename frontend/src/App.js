@@ -1,24 +1,34 @@
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LandingPage from './pages/LandingPage';
+import TransparencyPage from './pages/TransparencyPage';
+import SupplyChainDashboard from './pages/SupplyChainDashboard';
+import BatchManagementPage from './pages/BatchManagementPage';
+import TraceabilityExplorerPage from './pages/TraceabilityExplorerPage';
+import TransferManagementPage from './pages/TransferManagementPage';
+import MLAnalyticsPage from './pages/MLAnalyticsPage';
+import QualityPricingPage from './pages/QualityPricingPage';
+import QRCodeGeneratorPage from './pages/QRCodeGeneratorPage';
+import RoleManagementPage from './pages/RoleManagementPage';
+import ReportsInsightsPage from './pages/ReportsInsightsPage';
 import BatchMLAnalytics from './components/BatchMLAnalytics';
 import MLAnalytics from './components/MLAnalytics';
 import RoleManager from './components/RoleManager';
-import React, { useEffect, useState } from 'react';
 import BatchForm from './components/BatchForm';
 import BatchDetails from './components/BatchDetails';
 import TransferForm from './components/TransferForm';
-import TraceabilityView from './components/TraceabilityView';
+import TraceabilityView from './components/TraceabilityView.jsx';
 import QRCodeDisplay from './components/QRCodeDisplay';
 import PriceQualityForm from './components/PriceQualityForm';
 
 
-function App() {
+function Dashboard() {
   const [qrBatchId, setQrBatchId] = useState(null);
-
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const batchId = params.get('batchId');
     if (batchId) setQrBatchId(batchId);
   }, []);
-
   return (
     <div>
       <h1>AgriTrace Supply Chain Transparency</h1>
@@ -28,12 +38,33 @@ function App() {
         <BatchDetails />
         <TransferForm />
         <PriceQualityForm />
-  <RoleManager />
-  <MLAnalytics />
-  <BatchMLAnalytics />
+        <RoleManager />
+        <MLAnalytics />
+        <BatchMLAnalytics />
       </>}
       <TraceabilityView initialBatchId={qrBatchId} />
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/transparency" element={<SupplyChainDashboard />} />
+        <Route path="/transparency/legacy" element={<TransparencyPage />} />
+        <Route path="/transparency/batch-management" element={<BatchManagementPage />} />
+        <Route path="/transparency/traceability" element={<TraceabilityExplorerPage />} />
+        <Route path="/transparency/transfers" element={<TransferManagementPage />} />
+        <Route path="/transparency/analytics" element={<MLAnalyticsPage />} />
+        <Route path="/transparency/quality-pricing" element={<QualityPricingPage />} />
+        <Route path="/transparency/qr-codes" element={<QRCodeGeneratorPage />} />
+        <Route path="/transparency/roles" element={<RoleManagementPage />} />
+        <Route path="/transparency/reports" element={<ReportsInsightsPage />} />
+      </Routes>
+    </Router>
   );
 }
 
