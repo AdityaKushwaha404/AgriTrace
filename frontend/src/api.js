@@ -29,3 +29,23 @@ export const buyBatch = async (data) => {
 export const recordQuality = async (data) => {
   return axios.post(`${API_BASE}/blockchain/actions/quality`, data);
 };
+
+// --- AI Copilot ---
+export const aiChat = async ({ messages, batchId, txHash, token }) => {
+  const headers = token ? { Authorization: `Bearer ${token}` } : {};
+  const { data } = await axios.post(
+    `${API_BASE}/ai/chat`,
+    { messages, batchId, txHash },
+    { headers }
+  );
+  return data;
+};
+
+// --- Transfers with payment (Razorpay) ---
+export const createTransferPayment = async ({ amount, batchId, to, noteCID }) => {
+  return axios.post(`${API_BASE}/transfer/create-payment`, { amount, batchId, to, noteCID });
+};
+
+export const verifyTransferPayment = async (payload) => {
+  return axios.post(`${API_BASE}/transfer/verify`, payload);
+};
